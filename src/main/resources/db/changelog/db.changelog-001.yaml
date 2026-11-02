@@ -1,0 +1,52 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog-001
+
+  - changeSet:
+      id: 001
+      author: admin
+      changes:
+        - createTable:
+            tableName: notification_task
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: chat_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                  remarks: "Идентификатор чата Telegram"
+              - column:
+                  name: notification_text
+                  type: TEXT
+                  constraints:
+                    nullable: false
+                  remarks: "Текст уведомления"
+              - column:
+                  name: notification_date_time
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                  remarks: "Дата и время отправки уведомления"
+              - column:
+                  name: status
+                  type: VARCHAR(50)
+                  defaultValue: 'CREATED'
+                  constraints:
+                    nullable: false
+                  remarks: "Статус задачи"
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: "CURRENT_TIMESTAMP"
+                  constraints:
+                    nullable: false
+                  remarks: "Дата создания записи"
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  remarks: "Дата последнего обновления"
